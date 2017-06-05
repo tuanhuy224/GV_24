@@ -40,9 +40,7 @@ class UserDefaultHelper {
                    "addressName":(user?.address?.name)!,
                    "gender":user!.gender!,
                     "lat":(user?.address?.location?.latitude)!,
-                    "lng":(user?.address?.location?.longitude)!,
-                    "lat1":(user?.address?.location?.latitude)!,
-                    "lng1":(user?.address?.location?.longitude)!
+                    "lng":(user?.address?.location?.longitude)!
                    ] as Dictionary<String, Any>
         UserDefaults.standard.set(dic, forKey: "user")
         UserDefaults.standard.set(token, forKey: "token")
@@ -62,8 +60,8 @@ class UserDefaultHelper {
                 user.image = userDic["avatarUrl"] as? String
                 let address = Address()
                 address.name = userDic["addressName"] as? String
-                user.lat1 = (userDic["lat1"] as? Double)!
-                user.lng1 = (userDic["lng1"] as? Double)!
+                user.lat = (userDic["lat"] as? Double)!
+                user.lng = (userDic["lng"] as? Double)!
                 user.gender = userDic["gender"] as? Int
                 return user
             }
@@ -77,7 +75,9 @@ class UserDefaultHelper {
             "phone":user!.phone as Any,
             "image": user?.email as Any,
             "addressName":(user?.address?.name)! as Any,
-            "gender":user!.gender as Any
+            "gender":user!.gender as Any,
+            "latOwner":(user?.address?.location?.latitude)!,
+            "lngOwner":(user?.address?.location?.longitude)!
             ] as Dictionary<String, Any>
         UserDefaults.standard.set(dic, forKey: "userOwner")
         UserDefaults.standard.synchronize()
@@ -92,6 +92,8 @@ class UserDefaultHelper {
             user.image = userDic["image"] as? String
             let address = Address()
             address.name = userDic["addressName"] as? String
+            user.latOwner = userDic["latOwner"] as? Double
+            user.latOwner = userDic["lngOwner"] as? Double
             user.address = address
             user.gender = userDic["gender"] as? Int
             return self.ownerUser

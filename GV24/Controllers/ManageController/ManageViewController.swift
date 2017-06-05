@@ -34,10 +34,12 @@ extension ManageViewController:UITableViewDataSource{
         return cell!
     }
 }
-
 extension ManageViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 94
     }
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(WaittingController(), animated: true)
+    }
 }
+

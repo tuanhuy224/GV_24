@@ -17,10 +17,10 @@ class Owner: AppModel {
     var image:String?
     var gender:Int?
     var name:String?
-    var lat:Double?
-    var lng:Double?
     var info:Info?
     var address:Address?
+    var latOwner:Double?
+    var lngOwner:Double?
     
     override init(){
         super.init()
@@ -33,11 +33,11 @@ class Owner: AppModel {
         self.image = json?["info"]["image"].string
         self.gender = json?["info"]["gender"].int
         self.email = json?["info"]["email"].string
-//        guard let address = json?["info"]["address"] else {return}
+ //       guard let address = json?["info"]["address"] else {return}
 //        self.address?.name = address["name"].string
-        self.address = Address(json:(json?["info"]["address"])!) as? Address
-        guard let coorddinates = json?["info"]["address"]["coorddinates"] else { return}
-            self.lat = coorddinates["lat"].double
-            self.lng = coorddinates["lng"].double
+        self.address = Address(json:(json?["info"]["address"])!)
+//        guard let coorddinates = json?["info"]["address"]["coorddinates"] else { return}
+//            self.lat = coorddinates["lat"].double
+//            self.lng = coorddinates["lng"].double
     }
 }

@@ -55,10 +55,8 @@ class APIService: NSObject {
                 case .failure(let encodingError):
                     completion(nil, encodingError.localizedDescription)
                 }
-        }
-        )
+        })
     }
-    
     func postLogin(url : String,method:HTTPMethod, parameters: [String:Any]?,encoding: JSONEncoding,header:[String:String], completion: @escaping ((JSON, Error?)->())){
         Alamofire.request(url, method:method,parameters: parameters, encoding: encoding, headers: header).responseJSON { (response) in
             switch response.result {
@@ -104,7 +102,6 @@ class APIService: NSObject {
                         ownerDic = [Owner(json: stackHolder["owner"])]
                         print(ownerDic)
                     }
-                    
                 }
                 completion(workValue,infoValue ,ownerDic, nil)
             case .failure(let error):

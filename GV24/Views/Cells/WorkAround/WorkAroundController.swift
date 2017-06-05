@@ -69,20 +69,19 @@ class WorkAroundController: BaseViewController {
            navigationController?.pushViewController(DetailViewController(), animated: true)
     }
     
-    var param:[String:Double]?
-    let headers: HTTPHeaders = [
-        "hbbgvauth": "\(UserDefaultHelper.getToken()!)",
-        "Accept": "application/json"
-    ]
     func loadData() {
+        var param:[String:Any]?
+        let headers: HTTPHeaders = [
+            "hbbgvauth": "\(UserDefaultHelper.getToken()!)",
+            "Accept": "application/json"
+        ]
+        //10.76721,106.6855493
+        //10.7677238,106.6882557
         user = UserDefaultHelper.currentUser
         let apiClient = APIService.shared
-        //10.76721
-        //106.687738
-        //10.76721,106.6855493
-        param = ["lat":10.76721,"lng":106.6855493]
+        param = ["lat":10.7677238,"lng":106.6882557]
         handleRefresh.endRefreshing()
-        apiClient.postURL(url: urlDisplayHome, method: .post, parameters: param, encoding: JSONEncoding.default, header: headers) { (data,value,owner,error) in
+        apiClient.postURL(url: urlDisplayHome, method: .post, parameters: param as? [String : Double], encoding: JSONEncoding.default, header: headers) { (data,value,owner,error) in
             if let error = error{
                 print(error)
             }else{
@@ -90,8 +89,10 @@ class WorkAroundController: BaseViewController {
                     self.work = data
                     self.aroundTableView.reloadData()
                 }
-                for i in owner!{
-                UserDefaultHelper.setUserOwner(user: i)
+                if owner != nil{
+                    for i in owner!{
+                        UserDefaultHelper.setUserOwner(user: i)
+                    }
                 }
             }
         }

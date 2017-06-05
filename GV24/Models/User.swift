@@ -19,8 +19,8 @@ class User: AppModel {
     var image:String?
     var address:Address?
     var owner:Owner?
-    var lat1:Double?
-    var lng1:Double?
+    var lat:Double?
+    var lng:Double?
     
     override init(){
     super.init()
