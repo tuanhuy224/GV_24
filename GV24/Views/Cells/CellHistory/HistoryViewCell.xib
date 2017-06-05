@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Light.ttf">
+            <string>SFUIText-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" rowHeight="95" id="OJw-XG-7Bf" customClass="HistoryViewCell" customModule="GV24" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OJw-XG-7Bf" id="dem-v7-fdz">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="94.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nau an" translatesAutoresizingMaskIntoConstraints="NO" id="8EU-8A-QEv">
+                        <rect key="frame" x="8" y="8" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="flz-8W-t47"/>
+                            <constraint firstAttribute="height" constant="40" id="xyD-Wb-sAI"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lau don nha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fze-be-NCT">
+                        <rect key="frame" x="56" y="8" width="81" height="17"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Light" family="SF UI Text" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đã hoàn thành" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRE-zI-Q2n">
+                        <rect key="frame" x="56" y="28" width="61.5" height="11"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Light" family="SF UI Text" pointSize="9"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OqR-3B-X6U">
+                        <rect key="frame" x="187" y="22" width="1" height="11"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="bSg-Zi-7cK"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 phut truoc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEp-Ro-KDC">
+                        <rect key="frame" x="202" y="22" width="57.5" height="11"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Light" family="SF UI Text" pointSize="9"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10/05/2017" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj8-fR-18O">
+                        <rect key="frame" x="56" y="61" width="63" height="14"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Light" family="SF UI Text" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ADu-3e-VgC">
+                        <rect key="frame" x="18" y="53" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="JVV-2F-cFH"/>
+                            <constraint firstAttribute="height" constant="20" id="rgv-zc-hVa"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9h00am - 12h00am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9a-BP-wxD">
+                        <rect key="frame" x="202" y="61" width="83" height="13.5"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Light" family="SF UI Text" pointSize="9"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fze-be-NCT" firstAttribute="leading" secondItem="8EU-8A-QEv" secondAttribute="trailing" constant="8" id="01Q-e0-ORV"/>
+                    <constraint firstItem="FEp-Ro-KDC" firstAttribute="leading" secondItem="OqR-3B-X6U" secondAttribute="trailing" constant="14" id="0DB-HK-TKs"/>
+                    <constraint firstItem="dRE-zI-Q2n" firstAttribute="leading" secondItem="fze-be-NCT" secondAttribute="leading" id="1bc-Wc-s5r"/>
+                    <constraint firstItem="OqR-3B-X6U" firstAttribute="centerY" secondItem="dRE-zI-Q2n" secondAttribute="centerY" constant="-6" id="3i6-5N-E8k"/>
+                    <constraint firstItem="FEp-Ro-KDC" firstAttribute="centerY" secondItem="OqR-3B-X6U" secondAttribute="centerY" id="Bgb-K7-HQH"/>
+                    <constraint firstItem="ADu-3e-VgC" firstAttribute="centerX" secondItem="8EU-8A-QEv" secondAttribute="centerX" id="Cvg-ML-czd"/>
+                    <constraint firstItem="n9a-BP-wxD" firstAttribute="top" secondItem="Qj8-fR-18O" secondAttribute="top" id="Dbt-xq-FFu"/>
+                    <constraint firstItem="dRE-zI-Q2n" firstAttribute="top" secondItem="fze-be-NCT" secondAttribute="bottom" constant="3" id="EJA-OH-hon"/>
+                    <constraint firstItem="8EU-8A-QEv" firstAttribute="top" secondItem="dem-v7-fdz" secondAttribute="top" constant="8" id="EP4-vQ-Yzx"/>
+                    <constraint firstItem="ADu-3e-VgC" firstAttribute="top" secondItem="8EU-8A-QEv" secondAttribute="bottom" constant="5" id="EVb-S6-ai3"/>
+                    <constraint firstItem="FEp-Ro-KDC" firstAttribute="top" secondItem="dRE-zI-Q2n" secondAttribute="top" constant="-6" id="EXF-wP-RMB"/>
+                    <constraint firstItem="8EU-8A-QEv" firstAttribute="leading" secondItem="dem-v7-fdz" secondAttribute="leading" constant="8" id="G31-hy-vIM"/>
+                    <constraint firstItem="n9a-BP-wxD" firstAttribute="baseline" secondItem="Qj8-fR-18O" secondAttribute="baseline" id="JUU-2z-IhD"/>
+                    <constraint firstItem="OqR-3B-X6U" firstAttribute="top" secondItem="dRE-zI-Q2n" secondAttribute="top" constant="-6" id="MPg-l0-zxq"/>
+                    <constraint firstItem="OqR-3B-X6U" firstAttribute="centerX" secondItem="dem-v7-fdz" secondAttribute="centerX" id="SdL-o6-emh"/>
+                    <constraint firstItem="fze-be-NCT" firstAttribute="top" secondItem="8EU-8A-QEv" secondAttribute="top" id="WSg-rU-MpE"/>
+                    <constraint firstItem="n9a-BP-wxD" firstAttribute="leading" secondItem="FEp-Ro-KDC" secondAttribute="leading" id="kuZ-jE-M9d"/>
+                    <constraint firstItem="Qj8-fR-18O" firstAttribute="leading" secondItem="dRE-zI-Q2n" secondAttribute="leading" id="mLX-Fg-VUK"/>
+                    <constraint firstItem="Qj8-fR-18O" firstAttribute="top" secondItem="dRE-zI-Q2n" secondAttribute="bottom" constant="22" id="w2C-kq-J2u"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="iconAlarm" destination="ADu-3e-VgC" id="eaf-Jf-QEg"/>
+                <outlet property="imageWork" destination="8EU-8A-QEv" id="TK8-9c-cMC"/>
+            </connections>
+            <point key="canvasLocation" x="71" y="-428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="nau an" width="16" height="16"/>
+    </resources>
+</document>
