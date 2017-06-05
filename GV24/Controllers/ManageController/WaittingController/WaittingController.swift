@@ -9,7 +9,7 @@
 import UIKit
 
 class WaittingController: BaseViewController {
-
+    var owner:Owner?
     @IBOutlet weak var tbWaitting: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,15 +18,21 @@ class WaittingController: BaseViewController {
         tbWaitting.register(UINib(nibName:"InfoDetailCell",bundle:nil), forCellReuseIdentifier: "infoDetailCell")
         tbWaitting.register(UINib(nibName:"WaittingCell",bundle:nil), forCellReuseIdentifier: "waittingCell")
         tbWaitting.allowsSelection = false
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        test()
     }
     
+    override func decorate() {
+        
+    }
+    func test() {
+       
+    }
     override func setupViewBase() {
         self.title = "Đang chờ"
+        if UserDefaultHelper.ownerUser != nil {
+            owner = UserDefaultHelper.ownerUser
+            
+        }
     }
     
 }
@@ -40,6 +46,13 @@ extension WaittingController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             let cell:WorkDetailCell = tbWaitting.dequeueReusableCell(withIdentifier: "workDetailCell", for: indexPath) as! WorkDetailCell
+            cell.nameUser.text = owner?.username
+            cell.addressName.text = owner?.name
+            if owner?.image != "" {
+                APIService.shared.getImageFromURL(url: (owner?.image)!, completion: { (image, error) in
+                    cell.imageName.image = image
+                })
+            }
             return cell
         }else if indexPath.section == 1{
             let cell:InfoDetailCell = tbWaitting.dequeueReusableCell(withIdentifier: "infoDetailCell", for: indexPath) as! InfoDetailCell
@@ -51,7 +64,6 @@ extension WaittingController:UITableViewDataSource{
         
     }
 }
-
 extension WaittingController:UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

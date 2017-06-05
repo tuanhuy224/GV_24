@@ -13,6 +13,7 @@ import SwiftyJSON
 
 
 class HomeViewDisplayController: BaseViewController {
+    var user:User?
     let url = "https://yukotest123.herokuapp.com/en/owner/getById"
     @IBOutlet weak var workAround: UIButton!
     @IBOutlet weak var manageButton: UIButton!
@@ -26,15 +27,13 @@ class HomeViewDisplayController: BaseViewController {
         self.customBarRightButton()
     }
     
-    func getOwnerFromServer() {
-
-    }
     override func decorate() {
             buttonTest(button: workAround, imageName: "quanhday", titleImage: "SignIn".localize)
             buttonTest(button: manageButton, imageName: "quanlyconviec", titleImage: "SignIn".localize)
             buttonTest(button: historyButton, imageName: "lichsu", titleImage: "Back".localize)
         lbLogo.text = "Forgotpassword".localize
         lbLogo.textColor = UIColor.colorWithRedValue(redValue: 47, greenValue: 186, blueValue: 194, alpha: 1)
+        getOwnerFromServer()
     }
     override func setupViewBase() {
         
@@ -48,6 +47,28 @@ class HomeViewDisplayController: BaseViewController {
             lbLogo.text = "Forgotpassword".localize
         }else{
             lbLogo.text = "Forgotpassword".localize
+        }
+    }
+    
+    func getOwnerFromServer() {
+        var param:[String:Any]?
+        let headers: HTTPHeaders = [
+            "hbbgvauth": "\(UserDefaultHelper.getToken()!)",
+            "Accept": "application/json"
+        ]
+        user = UserDefaultHelper.currentUser
+        let apiClient = APIService.shared
+        param = ["lat":10.7677238,"lng":106.6882557]
+        apiClient.postURL(url: urlDisplayHome, method: .post, parameters: param as? [String : Double], encoding: JSONEncoding.default, header: headers) { (data,value,owner,error) in
+            if let error = error{
+                print(error)
+            }else{
+                if owner != nil{
+                    for i in owner!{
+                        UserDefaultHelper.setUserOwner(user: i)
+                    }
+                }
+            }
         }
     }
     func customBarRightButton(){
@@ -96,6 +117,7 @@ class HomeViewDisplayController: BaseViewController {
         navigationController?.pushViewController(ManageViewController(), animated: true)
     }
     @IBAction func HistoryButton(_ sender: Any) {
+        
     }
     
 }

@@ -5,7 +5,6 @@
 //  Created by admin on 5/24/17.
 //  Copyright © 2017 admin. All rights reserved.
 //
-
 import UIKit
 
 class BaseViewController: UIViewController {

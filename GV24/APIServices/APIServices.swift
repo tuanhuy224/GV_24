@@ -168,6 +168,15 @@ class APIService: NSObject {
             }
         }
     }
+    
+    func getImageFromURL(url:String, completion:@escaping((_ imagString:UIImage?, _ error:Error?)->())) {
+        Alamofire.download(url).responseData { response in
+            if let data = response.result.value {
+                let image = UIImage(data: data)
+                completion(image, nil)
+            }
+        }
+    }
 }
 class BaseService: NSObject {
     
