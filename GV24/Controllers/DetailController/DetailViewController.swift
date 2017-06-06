@@ -23,7 +23,7 @@ class DetailViewController: BaseViewController {
     }
     func loadData() {
         let headers: HTTPHeaders = ["hbbgvauth": "\(UserDefaultHelper.getToken()!)"]
-        let parameter:Parameters = ["id":"\((UserDefaultHelper.currentUser?.id)!)"]
+        let parameter:Parameters = ["id":"\(UserDefaultHelper.getString()!)"]
         APIService.shared.getUrl(url: url, param: parameter, header: headers) { (json, error) in
             print(json as Any)
         }

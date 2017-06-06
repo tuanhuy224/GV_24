@@ -68,35 +68,43 @@ class UserDefaultHelper {
             return nil
     }
     static func setUserOwner(user:Owner?){
-        let dic = [
-            "idOwner":user!.id as Any,
-            "username":user!.username as Any,
-            "email":user?.image as Any,
-            "phone":user!.phone as Any,
-            "image": user?.email as Any,
-            "addressName":(user?.address?.name)! as Any,
-            "gender":user!.gender as Any,
-            "latOwner":(user?.address?.location?.latitude)!,
-            "lngOwner":(user?.address?.location?.longitude)!
+        let dicOwner = [
+            "idOwner":user!.id!,
+            "username":user!.username!,
+            "email":user!.email!,
+            "phone":user!.phone!,
+            "image": user!.image!,
+            "addressName":(user!.address?.name!)!,
+            "gender":user!.gender!,
+            "latOwner":(user!.address?.location?.latitude)!,
+            "lngOwner":(user!.address?.location?.longitude)!
             ] as Dictionary<String, Any>
-        UserDefaults.standard.set(dic, forKey: "userOwner")
+        UserDefaults.standard.set(dicOwner, forKey: "userOwner")
         UserDefaults.standard.synchronize()
     }
     static var ownerUser : Owner? {
-            let userDic = UserDefaults.standard.value(forKey: "userOwner") as! Dictionary<String, Any>
+            let userOwner = UserDefaults.standard.value(forKey: "userOwner") as? [String:Any]
             let user = Owner()
-            user.id = userDic["idOwner"] as? String
-            user.username = userDic["username"] as? String
-            user.email = userDic["email"] as? String
-            user.phone = userDic["phone"] as? String
-            user.image = userDic["image"] as? String
+            user.id = userOwner?["idOwner"] as? String
+            user.username = userOwner?["username"] as? String
+            user.email = userOwner?["email"] as? String
+            user.phone = userOwner?["phone"] as? String
+            user.image = userOwner?["image"] as? String
             let address = Address()
-            address.name = userDic["addressName"] as? String
-            user.latOwner = userDic["latOwner"] as? Double
-            user.latOwner = userDic["lngOwner"] as? Double
-            user.address = address
-            user.gender = userDic["gender"] as? Int
-            return self.ownerUser
+            address.name = userOwner?["addressName"] as? String
+            user.name = userOwner?["addressName"] as? String
+            user.latOwner = userOwner?["latOwner"] as? Double
+            user.lngOwner = userOwner?["lngOwner"] as? Double
+            user.gender = userOwner?["gender"] as? Int
+            return user
+    }
+    
+    static func setString(string:String?){
+        UserDefaults.standard.set(string, forKey: "string")
+        UserDefaults.standard.synchronize()
+    }
+    static func getString() -> String? {
+        return UserDefaults.standard.value(forKey: "string") as? String
     }
 
 }

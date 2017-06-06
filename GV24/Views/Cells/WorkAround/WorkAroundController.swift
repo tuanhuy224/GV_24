@@ -79,9 +79,9 @@ class WorkAroundController: BaseViewController {
         //10.7677238,106.6882557
         user = UserDefaultHelper.currentUser
         let apiClient = APIService.shared
-        param = ["lat":10.7677238,"lng":106.6882557]
+        param = ["lat": 10.7677238,"lng": 106.6882557]
         handleRefresh.endRefreshing()
-        apiClient.postURL(url: urlDisplayHome, method: .post, parameters: param as? [String : Double], encoding: JSONEncoding.default, header: headers) { (data,value,owner,error) in
+        apiClient.postURL(url: urlDisplayHome, method: .post, parameters: param!, encoding: JSONEncoding.default, header: headers) { (data,idString,value,owner,error) in
             if let error = error{
                 print(error)
             }else{

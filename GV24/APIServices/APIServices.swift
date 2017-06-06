@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+
 typealias ResponseCompletion = (JSON?, String?) -> ()
 class APIService: NSObject {
     static let shared = APIService()
@@ -75,7 +76,8 @@ class APIService: NSObject {
         }
     }
 
-    func postURL(url : String,method:HTTPMethod, parameters: [String:Double]?,encoding: JSONEncoding,header:[String:String], completion: @escaping ((_ json:[WorkName]?,_ jsonInfo:[Info]?,_ jsonOwner:[Owner]?, Error?)->())){
+    func postURL(url : String,method:HTTPMethod, parameters: Parameters,encoding: JSONEncoding,header:[String:String], completion: @escaping ((_ json:[WorkName]?,_ idString:String?,_ jsonInfo:[Info]?,_ jsonOwner:[Owner]?, Error?)->())){
+        var idString:String?
         var workValue = [WorkName]()
         let infoValue = [Info]()
         var ownerDic = [Owner]()
@@ -86,12 +88,14 @@ class APIService: NSObject {
                 let status = json["status"].bool
                 if !status!{
                     if let message = json["message"].string{
-                        completion(nil,nil, nil,  message as? Error)
+                        completion(nil,"", nil, nil, message as? Error)
                     }
                 }
-                guard let data = json["data"]["docs"].array else{completion(nil,nil,nil, nil)
+                guard let data = json["data"]["docs"].array else{completion(nil,"",nil, nil,nil)
                     return}
                 for i in data{
+                    guard let id = i["_id"].string else{return}
+                    print(id)
                     var a = i["info"].dictionary
                     let w = WorkName(json: json)
                     guard let b = a?["work"]?.dictionary else{return}
@@ -103,9 +107,9 @@ class APIService: NSObject {
                         print(ownerDic)
                     }
                 }
-                completion(workValue,infoValue ,ownerDic, nil)
+                completion(workValue,idString,infoValue ,ownerDic, nil)
             case .failure(let error):
-                completion(nil,nil, nil, error.localizedDescription as? Error)
+                completion(nil,"",nil, nil, error.localizedDescription as? Error)
             }
         }
     }
@@ -165,6 +169,14 @@ class APIService: NSObject {
             case .failure(let error):
                 completion(nil, error)
                 print(error)
+            }
+        }
+    }
+    func getImageFromURL(url:String, completion:@escaping((_ imagString:UIImage?, _ error:Error?)->())) {
+        Alamofire.download(url).responseData { response in
+            if let data = response.result.value {
+                let image = UIImage(data: data)
+                completion(image, nil)
             }
         }
     }

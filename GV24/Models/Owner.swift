@@ -33,11 +33,8 @@ class Owner: AppModel {
         self.image = json?["info"]["image"].string
         self.gender = json?["info"]["gender"].int
         self.email = json?["info"]["email"].string
- //       guard let address = json?["info"]["address"] else {return}
-//        self.address?.name = address["name"].string
+        self.info = Info(json: (json?["info"])!)
         self.address = Address(json:(json?["info"]["address"])!)
-//        guard let coorddinates = json?["info"]["address"]["coorddinates"] else { return}
-//            self.lat = coorddinates["lat"].double
-//            self.lng = coorddinates["lng"].double
+
     }
 }

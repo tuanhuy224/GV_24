@@ -13,7 +13,9 @@ class Info: AppModel {
     var title:String?
     var package:Package?
     var workName:WorkName?
-
+    override init() {
+        super.init()
+    }
     override init(json: JSON) {
         super.init()
         self.title  = json["title"].string

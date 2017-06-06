@@ -8,19 +8,12 @@
 
 import UIKit
 
-class ManageViewController: UIViewController {
-
+class ManageViewController: BaseViewController {
     @IBOutlet weak var tbManage: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tbManage.register(UINib(nibName:"HistoryViewCell",bundle:nil), forCellReuseIdentifier: "historyCell")
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
