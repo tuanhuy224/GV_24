@@ -39,7 +39,7 @@ extension ManageViewController:UITableViewDelegate{
         return 94
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(WaittingController(), animated: true)
+//        navigationController?.pushViewController(WaittingController(), animated: true)
     }
 }
 
