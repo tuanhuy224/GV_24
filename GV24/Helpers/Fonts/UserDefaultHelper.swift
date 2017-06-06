@@ -98,5 +98,13 @@ class UserDefaultHelper {
             user.gender = userOwner?["gender"] as? Int
             return user
     }
+    
+    static func setString(string:String?){
+        UserDefaults.standard.set(string, forKey: "string")
+        UserDefaults.standard.synchronize()
+    }
+    static func getString() -> String? {
+        return UserDefaults.standard.value(forKey: "string") as? String
+    }
 
 }

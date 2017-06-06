@@ -8,6 +8,7 @@ target 'GV24' do
    	pod 'IoniconsSwift', :git => 'http://github.com/tidwall/IoniconsSwift.git', :branch => 'master'
 	pod 'Alamofire'
 	pod 'SwiftyJSON'
+	pod 'Kingfisher', '~> 3.0'
 
   # Pods for GV24
 

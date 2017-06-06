@@ -59,7 +59,7 @@ class HomeViewDisplayController: BaseViewController {
         user = UserDefaultHelper.currentUser
         let apiClient = APIService.shared
         param = ["lat":10.7677238,"lng":106.6882557]
-        apiClient.postURL(url: urlDisplayHome, method: .post, parameters: param as? [String : Double], encoding: JSONEncoding.default, header: headers) { (data,value,owner,error) in
+        apiClient.postURL(url: urlDisplayHome, method: .post, parameters: param!, encoding: JSONEncoding.default, header: headers) { (data,idString,value,owner,error) in
             if let error = error{
                 print(error)
             }else{
@@ -67,6 +67,9 @@ class HomeViewDisplayController: BaseViewController {
                     for i in owner!{
                         UserDefaultHelper.setUserOwner(user: i)
                     }
+                }
+                if idString != nil{
+                        UserDefaultHelper.setString(string: idString)
                 }
             }
         }

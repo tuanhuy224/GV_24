@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 class WaittingController: BaseViewController {
     var owner:Owner?
     @IBOutlet weak var tbWaitting: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tbWaitting.register(UINib(nibName:"WorkDetailCell",bundle:nil), forCellReuseIdentifier: "workDetailCell")
         tbWaitting.register(UINib(nibName:"InfoDetailCell",bundle:nil), forCellReuseIdentifier: "infoDetailCell")
         tbWaitting.register(UINib(nibName:"WaittingCell",bundle:nil), forCellReuseIdentifier: "waittingCell")
@@ -48,10 +48,13 @@ extension WaittingController:UITableViewDataSource{
             let cell:WorkDetailCell = tbWaitting.dequeueReusableCell(withIdentifier: "workDetailCell", for: indexPath) as! WorkDetailCell
             cell.nameUser.text = owner?.username
             cell.addressName.text = owner?.name
-            if owner?.image != "" {
-                APIService.shared.getImageFromURL(url: (owner?.image)!, completion: { (image, error) in
-                    cell.imageName.image = image
-                })
+            if owner?.image == nil {
+                return cell
+            }
+            if let url = URL(string: (owner?.image)!){
+                DispatchQueue.main.async {
+                     cell.imageName.kf.setImage(with: url)
+                }
             }
             return cell
         }else if indexPath.section == 1{
