@@ -11,8 +11,12 @@ import IoniconsSwift
 
 class HistoryViewCell: UITableViewCell {
 
+    @IBOutlet weak var timeWork: UILabel!
+    @IBOutlet weak var createdDate: UILabel!
+    @IBOutlet weak var workNameLabel: UILabel!
     @IBOutlet weak var iconAlarm: UIImageView!
     @IBOutlet weak var imageWork: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         imageWork.layer.cornerRadius = imageWork.frame.width/2

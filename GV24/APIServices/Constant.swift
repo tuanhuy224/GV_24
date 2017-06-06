@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+let urlHistory = "https://yukotest123.herokuapp.com/en/maid/getAllTasks"
 let urlDisplayHome = "https://yukotest123.herokuapp.com/en/task/getAll"
 let urlLogin = "https://yukotest123.herokuapp.com/vi/auth/maid/login"
 struct Constants {

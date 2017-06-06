@@ -18,5 +18,6 @@ class Work: AppModel {
         super.init()
         self.id = json["_id"].string
         self.history = json["history"].dictionary
+        self.info = Info(json: json["info"])
     }
 }

@@ -19,7 +19,7 @@ class Info: AppModel {
     override init(json: JSON) {
         super.init()
         self.title  = json["title"].string
-        self.workName = WorkName(json: json["name"])
+        self.workName = WorkName(json: json["work"])
     }
    
 }
