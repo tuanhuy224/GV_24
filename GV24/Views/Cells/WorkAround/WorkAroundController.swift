@@ -9,13 +9,18 @@
 import UIKit
 import IoniconsSwift
 import Alamofire
+import SwiftyJSON
+import Kingfisher
 
 class WorkAroundController: BaseViewController {
     @IBOutlet weak var arWork: WorkAround!
     var cellHeight: CGFloat?
     var  user:User?
+    var id:String?
     var logtitude:Double?
     var lattitude:Double?
+    var arrays = [Around]()
+    
     var work = [WorkName]()
     @IBOutlet weak var aroundTableView: UITableView!
     override func viewDidLoad() {
@@ -24,10 +29,7 @@ class WorkAroundController: BaseViewController {
         aroundTableView.addSubview(handleRefresh)
         arWork.setupView()
         setup()
-        
-        DispatchQueue.main.async {
-            self.loadData()
-        }
+        self.loadData()
     }
     override func setupViewBase() {
         if UserDefaultHelper.getSlider() != "" {
@@ -53,7 +55,7 @@ class WorkAroundController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.title = "Công việc quanh đây"
+        self.title = "Nearbyjobs".localize
         self.customBarLeftButton()
     }
     func customBarLeftButton(){
@@ -66,67 +68,52 @@ class WorkAroundController: BaseViewController {
         
     }
     func selectButton() {
-           navigationController?.pushViewController(DetailViewController(), animated: true)
+        navigationController?.pushViewController(DetailViewController(), animated: true)
     }
-    
     func loadData() {
-        var param:[String:Any]?
-        let headers: HTTPHeaders = [
-            "hbbgvauth": "\(UserDefaultHelper.getToken()!)",
-            "Accept": "application/json"
-        ]
-        //10.76721,106.6855493
-        //10.7677238,106.6882557
-        user = UserDefaultHelper.currentUser
-        let apiClient = APIService.shared
-        param = ["lat": 10.7677238,"lng": 106.6882557]
+        let url = "https://yukotest123.herokuapp.com/en/more/getTaskAround"
+        let apiService = APIService.shared
+        let param:[String:Double] = ["lng": 106.6882557,"lat": 10.7677238]
         handleRefresh.endRefreshing()
-        apiClient.postURL(url: urlDisplayHome, method: .post, parameters: param!, encoding: JSONEncoding.default, header: headers) { (data,idString,value,owner,error) in
-            if let error = error{
-                print(error)
-            }else{
-                if let data = data{
-                    self.work = data
-                    self.aroundTableView.reloadData()
+        apiService.getAllAround(url: url, method: .get, parameters: param, encoding: URLEncoding.default) { (json, string) in
+            if let jsonArray = json?.array{
+                for data in jsonArray{
+                self.arrays.append(Around(json: data))
                 }
-                if owner != nil{
-                    for i in owner!{
-                        UserDefaultHelper.setUserOwner(user: i)
-                    }
-                }
+                self.aroundTableView.reloadData()
             }
         }
-    } 
+    }
 }
 extension WorkAroundController:UITableViewDataSource,UITableViewDelegate{
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return work.count
+         return arrays.count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell: WorkTableViewCell = (aroundTableView.dequeueReusableCell(withIdentifier: "workCell", for: indexPath) as? WorkTableViewCell)!
-            DispatchQueue.main.async {
-            cell.lbWork.text = self.work[indexPath.row].name
-            }
+        cell.lbWork.text = "\(arrays[indexPath.row].id!.name!)"
+        cell.amountWork.text = "\(arrays[indexPath.row].count!)"
+        let image = URL(string: arrays[indexPath.row].id!.image!)
+        DispatchQueue.main.async {
+             cell.imageWork.kf.setImage(with: image)
+        }
+        cell.delegate = self as? sendIdForViewDetailDelegate
             return cell
     }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-            navigationController?.pushViewController(HistoryViewController(), animated: true)
-        
+         let vc = AroundItemController(nibName: "AroundItemController", bundle: nil)
+            vc.id = "\(arrays[indexPath.row].id!.id!)"
+            navigationController?.pushViewController(vc, animated: true)
     }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }
-    
 }
 extension WorkAroundController:changeSliderDelegate{
     func change(slider: UISlider) {

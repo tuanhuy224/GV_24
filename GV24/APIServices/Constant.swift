@@ -9,7 +9,7 @@
 import UIKit
 
 
-let urlDisplayHome = "https://yukotest123.herokuapp.com/en/task/getAll"
+let urlDisplayHome = "https://yukotest123.herokuapp.com/vi/task/getAll"
 let urlLogin = "https://yukotest123.herokuapp.com/vi/auth/maid/login"
 struct Constants {
     static let kUserToken = "kUserToken"

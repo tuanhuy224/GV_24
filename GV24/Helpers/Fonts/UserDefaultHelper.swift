@@ -7,7 +7,10 @@
 
 import Foundation
 import UIKit
-
+enum gender {
+    static let boy = "Nam"
+    static let girl = "Nữ"
+}
 enum GlobalConstants {
     
     static let englishCode = "en"

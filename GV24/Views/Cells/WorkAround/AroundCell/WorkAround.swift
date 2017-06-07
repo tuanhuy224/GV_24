@@ -20,7 +20,6 @@ class WorkAround: xibView {
     @IBOutlet weak var sliderMax: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         minDictance.text = "\(0)"
         maxDictance.text = "\(2000)"
     }

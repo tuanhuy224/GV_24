@@ -35,6 +35,7 @@ class WorkName:AppModel {
     var name:String?
     override init(json: JSON) {
         super.init(json: json)
+        self.id = json["_id"].string
         self.name = json["name"].string
         self.image = json["image"].string
     }

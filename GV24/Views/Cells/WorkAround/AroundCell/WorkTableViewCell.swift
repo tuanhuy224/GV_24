@@ -9,9 +9,11 @@
 import UIKit
 import IoniconsSwift
 import Alamofire
-
+protocol sendIdForViewDetailDelegate:class {
+    func sendId(id:String)
+}
 class WorkTableViewCell: UITableViewCell {
-
+    weak var delegate:sendIdForViewDetailDelegate?
     @IBOutlet weak var amountWork: UILabel!
     @IBOutlet weak var lbWork: UILabel!
     @IBOutlet weak var imageWork: UIImageView!

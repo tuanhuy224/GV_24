@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct GlamError{
+struct Error{
     var errorCode:Int
     var errorContent:String
     init() {

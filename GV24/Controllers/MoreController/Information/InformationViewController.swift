@@ -98,9 +98,9 @@ extension InformationViewController:UITableViewDataSource{
         if indexPath.section == 0 {
             let cell:InforCell = (tbInformation.dequeueReusableCell(withIdentifier: "inforCell", for: indexPath) as? InforCell)!
             if user?.gender == 0 {
-                cell.lbGender.text = "Nữ"
+                cell.lbGender.text = gender.girl
             }else{
-                cell.lbGender.text = "Nam"
+                cell.lbGender.text = gender.boy
             }
             let url = URL(string: (user?.image)!)
             let data = try? Data(contentsOf: url!)

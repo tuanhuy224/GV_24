@@ -11,6 +11,8 @@ import Alamofire
 
 class DetailViewController: BaseViewController {
     @IBOutlet weak var tbDetail: UITableView!
+    var id:String?
+    let aroundView:WorkAroundController = WorkAroundController(nibName: "WorkAroundController", bundle: nil)
     let url = "https://yukotest123.herokuapp.com/en/task/getById"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +51,6 @@ extension DetailViewController:UITableViewDataSource{
         
     }
 }
-
 extension DetailViewController:UITableViewDelegate{
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -62,6 +63,4 @@ extension DetailViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
-   
-
 }
