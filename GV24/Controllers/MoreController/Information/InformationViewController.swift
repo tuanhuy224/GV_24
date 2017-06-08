@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class InformationViewController: BaseViewController {
 
@@ -102,13 +103,9 @@ extension InformationViewController:UITableViewDataSource{
             }else{
                 cell.lbGender.text = gender.boy
             }
-            let url = URL(string: (user?.image)!)
-            let data = try? Data(contentsOf: url!)
-            if let imageData = data {
-                let image = UIImage(data: imageData)
+            let url = URL(string: user!.image!)
                 DispatchQueue.main.async {
-                    cell.avatar?.image = image
-                }
+                    cell.avatar?.kf.setImage(with: url)
             }
             cell.lbName.text = user?.name
             cell.lbPhone.text = user?.phone

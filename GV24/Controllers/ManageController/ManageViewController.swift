@@ -12,7 +12,6 @@ class ManageViewController: BaseViewController {
     @IBOutlet weak var tbManage: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tbManage.register(UINib(nibName:"HistoryViewCell",bundle:nil), forCellReuseIdentifier: "historyCell")
     }
 }
@@ -32,7 +31,7 @@ extension ManageViewController:UITableViewDelegate{
         return 94
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(WaittingController(), animated: true)
+//        navigationController?.pushViewController(WaittingController(), animated: true)
     }
 }
 

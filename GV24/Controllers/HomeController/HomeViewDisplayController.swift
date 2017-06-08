@@ -33,45 +33,15 @@ class HomeViewDisplayController: BaseViewController {
             buttonTest(button: historyButton, imageName: "lichsu", titleImage: "Back".localize)
         lbLogo.text = "Forgotpassword".localize
         lbLogo.textColor = UIColor.colorWithRedValue(redValue: 47, greenValue: 186, blueValue: 194, alpha: 1)
-        getOwnerFromServer()
+
     }
     override func setupViewBase() {
-        
         self.title = "Home".localize
-//        buttonTest(button: workAround, imageName: "quanhday", titleImage: "cong viec quanh day")
-//        buttonTest(button: manageButton, imageName: "quanlyconviec", titleImage: "quan ly cong viec")
-//        buttonTest(button: historyButton, imageName: "lichsu", titleImage: "lich su")
-        
         let lang = DGLocalization.sharedInstance.getCurrentLanguage()
         if lang.languageCode == "en" {
             lbLogo.text = "Forgotpassword".localize
         }else{
             lbLogo.text = "Forgotpassword".localize
-        }
-    }
-    
-    func getOwnerFromServer() {
-        var param:[String:Any]?
-        let headers: HTTPHeaders = [
-            "hbbgvauth": "\(UserDefaultHelper.getToken()!)",
-            "Accept": "application/json"
-        ]
-        user = UserDefaultHelper.currentUser
-        let apiClient = APIService.shared
-        param = ["lat":10.7677238,"lng":106.6882557]
-        apiClient.postURL(url: urlDisplayHome, method: .post, parameters: param!, encoding: JSONEncoding.default, header: headers) { (data,idString,value,owner,error) in
-            if let error = error{
-                print(error)
-            }else{
-                if owner != nil{
-                    for i in owner!{
-                        UserDefaultHelper.setUserOwner(user: i)
-                    }
-                }
-                if idString != nil{
-                        UserDefaultHelper.setString(string: idString)
-                }
-            }
         }
     }
     func customBarRightButton(){
@@ -120,7 +90,8 @@ class HomeViewDisplayController: BaseViewController {
         navigationController?.pushViewController(ManageViewController(), animated: true)
     }
     @IBAction func HistoryButton(_ sender: Any) {
-        
+        navigationController?.pushViewController(HistoryViewController(), animated: true)
+
     }
     
 }

@@ -34,7 +34,6 @@ class WaittingController: BaseViewController {
             
         }
     }
-    
 }
 extension WaittingController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
